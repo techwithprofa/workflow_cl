@@ -1,0 +1,20 @@
+{
+  "contextWindow": 150000,
+  "maxTokens": 8192,
+  "temperature": 0.4,
+  "includeFiles": [
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/*.e2e.*",
+    "**/jest.config.*",
+    "**/vitest.config.*",
+    "**/playwright.config.*",
+    "**/__tests__/**"
+  ],
+  "excludePatterns": [
+    "node_modules/**",
+    ".git/**",
+    "dist/**",
+    "coverage/**"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "contextWindow": 200000,
+  "maxTokens": 8192,
+  "temperature": 0.4,
+  "includeFiles": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.json",
+    "**/*.test.*"
+  ],
+  "excludePatterns": [
+    "node_modules/**",
+    ".git/**",
+    "dist/**",
+    "build/**"
+  ]
+}

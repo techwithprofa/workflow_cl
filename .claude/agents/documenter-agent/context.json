@@ -1,0 +1,19 @@
+{
+  "contextWindow": 150000,
+  "maxTokens": 12288,
+  "temperature": 0.6,
+  "includeFiles": [
+    "**/*.md",
+    "**/*.mdx",
+    "**/README*",
+    "**/CONTRIBUTING*",
+    "**/docs/**",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "excludePatterns": [
+    "node_modules/**",
+    ".git/**",
+    "dist/**"
+  ]
+}

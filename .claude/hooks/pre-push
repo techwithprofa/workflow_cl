@@ -1,0 +1,107 @@
+#!/bin/sh
+# Pre-push hook to run tests and checks before pushing
+
+echo "🚀 Running pre-push checks..."
+
+# Get the remote name and URL
+remote="$1"
+url="$2"
+
+# Get current branch
+branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+
+echo "📍 Branch: $branch"
+echo "📡 Remote: $remote"
+
+# Prevent pushing to main/master directly
+if [ "$branch" = "main" ] || [ "$branch" = "master" ]; then
+  echo "❌ Direct push to $branch is not allowed."
+  echo "   Please create a feature branch and submit a pull request."
+  echo "   Run: git checkout -b feature/my-feature"
+  exit 1
+fi
+
+# Run tests
+echo "🧪 Running tests..."
+if command -v npm >/dev/null 2>&1; then
+  if [ -f "package.json" ] && grep -q "\"test\"" package.json; then
+    npm test -- --passWithNoTests --silent
+    if [ $? -ne 0 ]; then
+      echo "❌ Tests failed. Please fix failing tests before pushing."
+      echo "   Run 'npm test' to see details."
+      exit 1
+    fi
+    echo "✅ Tests passed"
+  else
+    echo "⚠️  No test script found in package.json"
+  fi
+else
+  echo "⚠️  npm not found, skipping tests"
+fi
+
+# Run build
+echo "🏗️  Running build..."
+if command -v npm >/dev/null 2>&1; then
+  if [ -f "package.json" ] && grep -q "\"build\"" package.json; then
+    npm run build --silent
+    if [ $? -ne 0 ]; then
+      echo "❌ Build failed. Please fix build errors before pushing."
+      echo "   Run 'npm run build' to see details."
+      exit 1
+    fi
+    echo "✅ Build successful"
+  else
+    echo "⚠️  No build script found in package.json"
+  fi
+else
+  echo "⚠️  npm not found, skipping build"
+fi
+
+# Check for large files
+echo "📦 Checking for large files..."
+large_files=$(git diff --cached --name-only --diff-filter=ACMRT | xargs -I {} sh -c 'test -f "{}" && du -k "{}" | awk "\$1 > 1000"' 2>/dev/null || true)
+if [ -n "$large_files" ]; then
+  echo "⚠️  Found files larger than 1MB:"
+  echo "$large_files"
+  echo "   Consider using Git LFS for large files."
+  echo "   Press Ctrl+C to abort, or Enter to continue."
+  read -r
+fi
+
+# Check if ahead of origin
+commits_ahead=$(git rev-list --count @{u}..HEAD 2>/dev/null || echo "0")
+if [ "$commits_ahead" -gt 0 ]; then
+  echo "📊 Pushing $commits_ahead commit(s) to $remote"
+fi
+
+# Security check - prevent pushing secrets
+echo "🔒 Checking for secrets..."
+if git log @{u}..HEAD --all --source --full-history -S 'api_key\|apikey\|secret\|password\|token' --pickaxe-all 2>/dev/null | grep -q '^commit'; then
+  echo "⚠️  Possible secrets detected in commits being pushed."
+  echo "   Please review your commits carefully."
+  echo "   Press Ctrl+C to abort, or Enter to continue."
+  read -r
+fi
+
+# Check for .env files
+env_files=$(git diff --cached --name-only | grep -E '\.env(\.|$)' || true)
+if [ -n "$env_files" ]; then
+  echo "❌ Attempting to push .env file(s):"
+  echo "$env_files"
+  echo "   .env files should never be committed."
+  echo "   Please unstage and add to .gitignore."
+  exit 1
+fi
+
+# Verify git hooks are up to date
+if [ -d ".git/hooks" ]; then
+  if [ ! -x ".git/hooks/pre-commit" ] || [ ! -x ".git/hooks/pre-push" ]; then
+    echo "⚠️  Git hooks may not be properly installed."
+    echo "   Run 'chmod +x .git/hooks/*' to fix permissions."
+  fi
+fi
+
+echo "✅ Pre-push checks passed!"
+echo "🚀 Pushing to $remote..."
+
+exit 0

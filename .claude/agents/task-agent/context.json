@@ -1,0 +1,14 @@
+{
+  "contextWindow": 150000,
+  "maxTokens": 4096,
+  "temperature": 0.5,
+  "includeFiles": [
+    "**/*.md",
+    "**/*.todo",
+    "package.json"
+  ],
+  "excludePatterns": [
+    "node_modules/**",
+    ".git/**"
+  ]
+}
