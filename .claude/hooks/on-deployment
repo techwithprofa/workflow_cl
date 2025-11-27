@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-deployment hook - Runs when deployment occurs
+
+# Log deployment
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] DEPLOYMENT: $1" >> .claude/docs/logs/workflow.log
+
+# Update deployment tracking
+echo "Deployment: $1"
+
+exit 0

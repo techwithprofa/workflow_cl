@@ -1,0 +1,13 @@
+{
+  "frequentRequests": [],
+  "preferredSolutions": [],
+  "commonWorkflows": [
+    "multi-agent-coordination",
+    "systematic-documentation"
+  ],
+  "learningPatterns": {
+    "adaptsQuickly": true,
+    "prefersExamples": true,
+    "detailOriented": true
+  }
+}

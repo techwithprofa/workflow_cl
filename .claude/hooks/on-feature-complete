@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-feature-complete hook - Runs when a feature is completed
+
+# Log feature completion
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] FEATURE COMPLETE: $1" >> .claude/docs/logs/workflow.log
+
+# Update project status
+echo "Feature completed: $1"
+
+exit 0

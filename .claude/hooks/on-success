@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-success hook - Runs on successful task completion
+
+# Log success
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] SUCCESS: $1" >> .claude/docs/logs/workflow.log
+
+# Update metrics
+echo "Success: $1"
+
+exit 0

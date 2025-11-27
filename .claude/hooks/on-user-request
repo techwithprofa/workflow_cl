@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-user-request hook - Runs when user makes a request
+
+# Log user request
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] USER REQUEST: $1" >> .claude/docs/logs/workflow.log
+
+# Track request patterns
+echo "User request: $1"
+
+exit 0

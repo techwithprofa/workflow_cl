@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-issue-resolve hook - Runs when an issue is resolved
+
+# Log issue resolution
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] ISSUE RESOLVED: $1" >> .claude/docs/logs/workflow.log
+
+# Update issue tracking
+echo "Issue resolved: $1"
+
+exit 0

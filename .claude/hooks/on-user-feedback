@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-user-feedback hook - Runs when user provides feedback
+
+# Log user feedback
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] USER FEEDBACK: $1" >> .claude/docs/logs/workflow.log
+
+# Update user preferences based on feedback
+echo "User feedback received: $1"
+
+exit 0

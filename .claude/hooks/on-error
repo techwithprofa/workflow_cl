@@ -1,0 +1,11 @@
+#!/bin/bash
+# On-error hook - Runs when an error occurs
+
+# Log error
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] ERROR: $1" >> .claude/docs/logs/errors.log
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] ERROR: $1" >> .claude/docs/logs/workflow.log
+
+# Notify about error
+echo "Error occurred: $1"
+
+exit 0

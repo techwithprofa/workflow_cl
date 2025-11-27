@@ -1,0 +1,10 @@
+#!/bin/bash
+# Pre-planning hook - Runs before planning phase
+
+# Log planning start
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] PLANNING START: $1" >> .claude/docs/logs/workflow.log
+
+# Gather context for planning
+echo "Starting planning: $1"
+
+exit 0

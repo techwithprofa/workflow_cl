@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-architecture-change hook - Runs when architecture changes
+
+# Log architecture change
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] ARCHITECTURE CHANGE: $1" >> .claude/docs/logs/workflow.log
+
+# Update architecture documentation
+echo "Architecture change: $1"
+
+exit 0

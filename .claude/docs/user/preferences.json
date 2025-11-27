@@ -1,0 +1,22 @@
+{
+  "communication": {
+    "detailLevel": "medium",
+    "technicalDepth": "high",
+    "responseFormat": "structured"
+  },
+  "coding": {
+    "style": "clean-code",
+    "testingPreference": "comprehensive",
+    "documentationLevel": "detailed"
+  },
+  "workflow": {
+    "commitStyle": "conventional",
+    "reviewProcess": "thorough",
+    "deploymentApproach": "automated"
+  },
+  "notifications": {
+    "taskCompletion": true,
+    "errorAlerts": true,
+    "deploymentUpdates": true
+  }
+}

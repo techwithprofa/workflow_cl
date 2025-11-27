@@ -1,0 +1,10 @@
+#!/bin/bash
+# Post-task hook - Runs after completing a task
+
+# Log task completion
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Post-task hook: $1" >> .claude/docs/logs/workflow.log
+
+# Clean up temporary files if any
+echo "Task completed: $1"
+
+exit 0

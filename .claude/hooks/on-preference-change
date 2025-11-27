@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-preference-change hook - Runs when user preferences change
+
+# Log preference change
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] PREFERENCE CHANGE: $1" >> .claude/docs/logs/workflow.log
+
+# Update preference tracking
+echo "Preference changed: $1"
+
+exit 0

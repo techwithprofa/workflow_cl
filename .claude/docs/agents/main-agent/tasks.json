@@ -1,0 +1,12 @@
+{
+  "active": [],
+  "completed": [
+    {
+      "id": "task-001",
+      "description": "Initialize multi-agent system",
+      "completedAt": "2025-11-27",
+      "duration": "N/A"
+    }
+  ],
+  "pending": []
+}

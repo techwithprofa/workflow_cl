@@ -1,0 +1,11 @@
+#!/bin/bash
+# On-task-fail hook - Runs when a task fails
+
+# Log task failure
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] TASK FAILED: $1" >> .claude/docs/logs/errors.log
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] TASK FAILED: $1" >> .claude/docs/logs/workflow.log
+
+# Create issue tracking for failed task
+echo "Task failed: $1"
+
+exit 0

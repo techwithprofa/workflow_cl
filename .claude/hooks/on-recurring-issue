@@ -1,0 +1,11 @@
+#!/bin/bash
+# On-recurring-issue hook - Runs when a recurring issue is detected
+
+# Log recurring issue
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] RECURRING ISSUE: $1" >> .claude/docs/logs/errors.log
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] RECURRING ISSUE: $1" >> .claude/docs/logs/workflow.log
+
+# Flag for architectural review
+echo "Recurring issue detected: $1"
+
+exit 0

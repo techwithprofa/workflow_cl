@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-task-complete hook - Runs when a task completes
+
+# Log task completion with metrics
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] TASK COMPLETE: $1" >> .claude/docs/logs/workflow.log
+
+# Update task metrics
+echo "Task completed: $1"
+
+exit 0

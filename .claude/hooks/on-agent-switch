@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-agent-switch hook - Runs when switching between agents
+
+# Log agent switch
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] AGENT SWITCH: $1 -> $2" >> .claude/docs/logs/workflow.log
+
+# Transfer context
+echo "Switching from $1 to $2"
+
+exit 0

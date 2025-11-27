@@ -1,0 +1,10 @@
+#!/bin/bash
+# Pre-task hook - Runs before starting a new task
+
+# Log task start
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Pre-task hook: $1" >> .claude/docs/logs/workflow.log
+
+# Update task status
+echo "Task starting: $1"
+
+exit 0

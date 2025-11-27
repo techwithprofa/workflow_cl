@@ -1,0 +1,10 @@
+#!/bin/bash
+# On-workflow-complete hook - Runs when entire workflow completes
+
+# Log workflow completion
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] WORKFLOW COMPLETE: $1" >> .claude/docs/logs/workflow.log
+
+# Generate workflow summary
+echo "Workflow completed: $1"
+
+exit 0
