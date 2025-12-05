@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(tree:*)",
+      "Bash(for:*)",
+      "Bash(do mkdir -p \"../skills-new/$file%.md\")",
+      "Bash(done:*)",
+      "Bash(python3:*)",
+      "Bash(cd:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(npm install lucide-react date-fns clsx tailwind-merge @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities uuid react-beautiful-dnd @types/react-beautiful-dnd framer-motion jspdf html2canvas next-themes)",
+      "Bash(npm install:*)",
+      "Bash(chmod:*)",
+      "Bash(npm run build)",
+      "Bash(./setup-mcp.sh:*)",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "mcpServers": {
+    "agent-orchestrator": {
+      "command": "node",
+      "args": [
+        "./agent-orchestrator-mcp/dist/index.js"
+      ],
+      "cwd": ".",
+      "env": {
+        "AGENTS_DIR": ".claude/agents"
+      }
+    }
+  }
+}
